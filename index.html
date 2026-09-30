@@ -4,14 +4,14 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <meta content="noindex, nofollow" name="robots"/>
-  <meta content="课程练习：个人介绍、技能与作品门户。" name="description"/>
+  <meta content="个人主页：人工智能技术应用专业学生，展示技能、获奖与作品。" name="description"/>
   <title>
    我的个人主页
   </title>
   <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
   <!-- CSS 负责颜色、字体、布局；defer 让 JavaScript 在 HTML 解析完成后执行。 -->
   <link href="styles.css" rel="stylesheet"/>
-   <script src="works-data.js" defer></script>
+  <script src="works-data.js" defer></script>
   <script src="works-render.js" defer></script>
   <script src="app.js" defer></script>
  </head>
@@ -19,13 +19,16 @@
   <a class="skip-link" href="#main">
    跳到正文
   </a>
-  <!-- 第 4 课新增①：顶部阅读进度条，宽度由 JavaScript 控制 -->
+  <!-- 顶部阅读进度条，宽度由 JavaScript 控制 -->
   <div class="reading-progress" id="reading-progress">
   </div>
   <header class="site-header">
    <div class="container header-inner">
     <a class="brand" href="#about">
-     我的主页
+     个人主页
+     <span>
+      AI · 25级
+     </span>
     </a>
     <!-- href="#栏目ID" 是原生锚点：即使不加载 JavaScript，也能跳到对应栏目。 -->
     <nav aria-label="主导航">
@@ -36,7 +39,7 @@
       经历
      </a>
      <a href="#projects">
-      科研
+      项目
      </a>
      <a href="#skills">
       技能
@@ -45,31 +48,37 @@
       作品
      </a>
      <a href="#teaching">
-      教学
+      目标
      </a>
      <a href="#publications">
-      成果
+      记录
      </a>
     </nav>
    </div>
   </header>
   <main id="main">
-   <!-- HTML 练习：修改姓名、研究方向、照片路径和联系方式。 -->
    <section class="hero" id="about">
+    <div class="hero-blob hero-blob-a">
+    </div>
+    <div class="hero-blob hero-blob-b">
+    </div>
     <div class="container">
      <div class="hero-top">
       <div class="hero-copy">
+       <p class="hero-eyebrow">
+        HELLO · 我是
+       </p>
        <h1>
-        林同学
+        陈璞
         <span>
          Lin
         </span>
        </h1>
-       <p class="hero-role">
-        软件技术专业学生 · 前端开发学习者
+       <p class="hero-role" data-type="人工智能技术应用专业 · 前端与 AI 应用开发者">
+        人工智能技术应用专业 · 前端与 AI 应用开发者
        </p>
        <p class="hero-school">
-        我的学校 · 我的班级
+        广东科学技术职业学院 · 计算机工程技术学院（人工智能学院） · 25计算机AI应用开发班
        </p>
       </div>
       <div class="hero-visual">
@@ -83,7 +92,7 @@
        学习方向
       </span>
       <p>
-       HTML5、CSS3、JavaScript，正在学习 Git、数据库与网站部署。
+       人工智能技术应用、前端开发（HTML5 / CSS3 / JavaScript），正在学习 Git、数据库与网站部署。
       </p>
      </div>
      <div class="profile-details">
@@ -92,7 +101,7 @@
         学习阶段
        </span>
        <p>
-        在校学习
+        大二 · 在校学习
        </p>
       </div>
       <div>
@@ -108,7 +117,9 @@
         联系
        </span>
        <p>
-        请填写可公开的联系方式
+        <a href="mailto:c15767941278@qq.com">
+         c15767941278@qq.com
+        </a>
        </p>
       </div>
       <div>
@@ -116,7 +127,62 @@
         学校地址
        </span>
        <p>
-        请填写自己的学校地址
+        广东科学技术职业学院
+       </p>
+      </div>
+     </div>
+     <!-- 数据卡片：数字由 JavaScript 滚动计数动画填充 -->
+     <div class="stats-grid">
+      <div class="stat-card rv">
+       <p class="stat-num">
+        <span data-count="1">
+         1
+        </span>
+        <em>
+         / 49
+        </em>
+       </p>
+       <p class="stat-label">
+        综合测评排名 · 专业第一
+       </p>
+      </div>
+      <div class="stat-card rv">
+       <p class="stat-num">
+        <span data-count="1">
+         1
+        </span>
+        <em>
+         / 49
+        </em>
+       </p>
+       <p class="stat-label">
+        学习成绩排名 · 专业第一
+       </p>
+      </div>
+      <div class="stat-card rv">
+       <p class="stat-num">
+        <span data-count="495">
+         495
+        </span>
+        <em>
+         小时
+        </em>
+       </p>
+       <p class="stat-label">
+        志愿服务时长 · 乐于奉献
+       </p>
+      </div>
+      <div class="stat-card rv">
+       <p class="stat-num">
+        <span data-count="20">
+         20
+        </span>
+        <em>
+         余项
+        </em>
+       </p>
+       <p class="stat-label">
+        校级及以上奖项
        </p>
       </div>
      </div>
@@ -131,18 +197,69 @@
       </h2>
      </header>
      <div class="section-content">
-      <!-- TASK-HTML：复制 experience-item 可增加一条自己的经历。 -->
-      <div class="experience-item">
+      <div class="experience-item rv">
        <p class="experience-heading">
         <strong>
-         我的学校 · 软件技术专业
+         广东科学技术职业学院 · 计算机工程技术学院（人工智能学院）
         </strong>
         <time>
-         在读
+         2025 级 · 在读
         </time>
        </p>
        <p class="experience-detail">
-        学习网页开发，用项目记录成长。
+        人工智能技术应用专业（25计算机AI应用开发班）。成绩排名与综合测评均列专业第一（1 / 49），具备扎实的专业基础和较强的自学能力。
+       </p>
+      </div>
+      <div class="experience-item rv">
+       <p class="experience-heading">
+        <strong>
+         团委融媒体中心 · 委员
+        </strong>
+        <time>
+         在任
+        </time>
+       </p>
+       <p class="experience-detail">
+        参与校园融媒体宣传工作，负责新媒体内容的策划、制作与发布。
+       </p>
+      </div>
+      <div class="experience-item rv">
+       <p class="experience-heading">
+        <strong>
+         25计算机AI班 · 副班长兼心理委员
+        </strong>
+        <time>
+         在任
+        </time>
+       </p>
+       <p class="experience-detail">
+        协助班级日常管理与同学关怀，积累组织协调经验。
+       </p>
+      </div>
+      <div class="experience-item rv">
+       <p class="experience-heading">
+        <strong>
+         18栋宿舍 · 宿舍长
+        </strong>
+        <time>
+         在任
+        </time>
+       </p>
+       <p class="experience-detail">
+        负责宿舍日常事务管理与沟通协调。
+       </p>
+      </div>
+      <div class="experience-item rv">
+       <p class="experience-heading">
+        <strong>
+         校报社团 · 团支书
+        </strong>
+        <time>
+         在任
+        </time>
+       </p>
+       <p class="experience-detail">
+        组织社团活动与团员管理，锻炼团队协作与活动策划能力。
        </p>
       </div>
      </div>
@@ -152,11 +269,11 @@
     <div class="container">
      <header class="section-heading">
       <h2>
-       项目经历
+       项目与获奖
       </h2>
      </header>
      <div class="section-content">
-      <article class="research-item">
+      <article class="research-item rv">
        <h3>
         <time>
          课程练习
@@ -164,9 +281,54 @@
         个人主页
        </h3>
        <p>
-        项目内容：制作自己的网页，展示资料与作品，记录修改、测试与发布过程。
+        项目内容：制作自己的网页，展示资料与作品，记录修改、测试与发布过程，并通过 GitHub Actions 实现 CI/CD 自动检查与部署。
        </p>
       </article>
+      <p class="awards-title rv">
+       获奖情况
+      </p>
+      <div class="awards-grid">
+       <div class="award-badge award-gold rv">
+        <span class="award-level">
+         省一等奖
+        </span>
+        <strong>
+         未来设计师大赛
+        </strong>
+       </div>
+       <div class="award-badge award-gold rv">
+        <span class="award-level">
+         省一等奖
+        </span>
+        <strong>
+         中国国际大学生创新大赛
+        </strong>
+       </div>
+       <div class="award-badge award-silver rv">
+        <span class="award-level">
+         省二等奖
+        </span>
+        <strong>
+         计算机设计大赛
+        </strong>
+       </div>
+       <div class="award-badge award-silver rv">
+        <span class="award-level">
+         省二等奖
+        </span>
+        <strong>
+         蓝桥杯视觉艺术设计赛
+        </strong>
+       </div>
+       <div class="award-badge award-bronze rv">
+        <span class="award-level">
+         省优秀奖
+        </span>
+        <strong>
+         海峡两岸计算机设计大赛
+        </strong>
+       </div>
+      </div>
      </div>
     </div>
    </section>
@@ -179,23 +341,41 @@
      </header>
      <div class="section-content">
       <ul class="skills-list">
-       <li>
+       <li class="rv">
         <strong>
          网页内容
         </strong>
         HTML5 结构、图片、链接。
        </li>
-       <li>
+       <li class="rv">
         <strong>
          页面样式
         </strong>
         CSS3 字体、颜色、响应式布局。
        </li>
-       <li>
+       <li class="rv">
         <strong>
          开发过程
         </strong>
         JavaScript、Git、检查与部署。
+       </li>
+       <li class="rv">
+        <strong>
+         人工智能
+        </strong>
+        AI 工具应用与 AI 应用开发实践。
+       </li>
+       <li class="rv">
+        <strong>
+         内容创作
+        </strong>
+        融媒体宣传、新媒体内容策划与制作。
+       </li>
+       <li class="rv">
+        <strong>
+         综合素养
+        </strong>
+        组织协调、责任心强、乐于奉献。
        </li>
       </ul>
      </div>
@@ -208,10 +388,10 @@
        作品门户
       </h2>
       <p class="works-notice">
-       以下为教学示例，完成后可替换为自己的作品。
+       以下为课程示例作品，后续会替换为自己的作品。
       </p>
      </header>
-     <!-- 第 5 课新增：筛选与排序工具条。里面的按钮由 JavaScript 生成，
+     <!-- 筛选与排序工具条。里面的按钮由 JavaScript 生成，
           不写 JS 时这里是空的，页面照常显示全部作品。 -->
      <div class="works-toolbar">
       <div class="works-tags" id="works-tags">
@@ -292,7 +472,7 @@
       </h2>
      </header>
      <div class="section-content">
-      <div class="teaching-group">
+      <div class="teaching-group rv">
        <h3>
         本学期目标
        </h3>
@@ -306,6 +486,9 @@
         <li>
          使用 Git 记录版本，让作品能被别人访问。
         </li>
+        <li>
+         在实践中不断提升自己的专业能力。
+        </li>
        </ol>
       </div>
      </div>
@@ -315,17 +498,25 @@
     <div class="container">
      <header class="section-heading">
       <h2>
-       学习记录
+       自我评价与记录
       </h2>
      </header>
      <div class="section-content">
-      <div class="publication-group">
+      <div class="publication-group rv">
+       <h3>
+        自我评价
+       </h3>
+       <p class="self-evaluation">
+        学习上踏实认真，成绩与综合测评位列专业第一，具备扎实的专业基础和较强的自学能力。工作中责任心强，担任多个学生职务，在融媒体宣传、班级管理和社团工作中积累了丰富的组织协调经验。平时热心公益，累计志愿时长 495 小时，乐于奉献。性格踏实稳重，抗压能力强，能够高效平衡学习与工作，希望在实践中不断提升自己的专业能力。
+       </p>
+      </div>
+      <div class="publication-group rv">
        <h3>
         我的记录
        </h3>
        <ol class="references">
         <li>
-         完成第一张个人主页。
+         完成第一张个人主页，并通过 CI/CD 自动发布上线。
         </li>
         <li>
          后续在这里补充自己的真实成果。
@@ -336,7 +527,7 @@
     </div>
    </section>
   </main>
-  <!-- 第 4 课新增：这两块由 JavaScript 控制，不写 JS 时它们不会出现 -->
+  <!-- 这两块由 JavaScript 控制，不写 JS 时它们不会出现 -->
   <p aria-live="polite" class="section-indicator" id="section-indicator">
   </p>
   <button aria-label="返回页面顶部" class="to-top" id="to-top" type="button">

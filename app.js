@@ -251,3 +251,88 @@ const reveal = new IntersectionObserver(
   { threshold: 0.15 },
 )
 sections.forEach(section => reveal.observe(section))
+
+// ══════════════════════════════════════════════════════════════
+// 高级版动效（追加）：打字机、逐项浮现、数字滚动计数
+// ══════════════════════════════════════════════════════════════
+// 系统开了"减少动态效果"时全部直接显示最终状态，不做动画。
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+// ---------- 动效一：首屏身份一行字，打字机效果 ----------
+// 取 .hero-role 上的 data-type 文本，逐字打出来；打完移除光标。
+const roleLine = document.querySelector('.hero-role')
+if (roleLine) {
+  const fullText = roleLine.dataset.type || roleLine.textContent
+  if (prefersReducedMotion) {
+    roleLine.textContent = fullText
+  } else {
+    roleLine.textContent = ''
+    roleLine.classList.add('is-typing')
+    let charIndex = 0
+    const typeNext = () => {
+      if (charIndex < fullText.length) {
+        roleLine.textContent = fullText.slice(0, charIndex + 1)
+        charIndex += 1
+        setTimeout(typeNext, 55)
+      } else {
+        roleLine.classList.remove('is-typing')
+      }
+    }
+    setTimeout(typeNext, 400)
+  }
+}
+
+// ---------- 动效二：小元素逐项浮现（.rv，进入视口加 is-visible） ----------
+// JS 顺便给同一组里的元素设置 transition-delay，形成"一个接一个"的节奏。
+const rvObserver = new IntersectionObserver(
+  (entries, observer) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      entry.target.classList.add('is-visible')
+      observer.unobserve(entry.target)
+    }
+  },
+  { threshold: 0.2 },
+)
+document.querySelectorAll('.rv').forEach((el, index) => {
+  if (prefersReducedMotion) {
+    el.classList.add('is-visible')
+    return
+  }
+  // 同一批兄弟元素的序号 → 依次延迟 90ms，最多延迟到 0.45s，避免等太久
+  el.style.transitionDelay = `${Math.min((index % 5) * 90, 450)}ms`
+  rvObserver.observe(el)
+})
+
+// ---------- 动效三：数据卡片数字从 0 滚动到目标值 ----------
+// <span data-count="495"> 里的数字在进入视口时用 requestAnimationFrame 递增。
+// 1 这种小数字滚不滚看不出区别，所以目标值 ≤ 10 的直接显示终值。
+const animateCount = span => {
+  const target = Number(span.dataset.count)
+  if (!Number.isFinite(target) || target <= 10 || prefersReducedMotion) {
+    span.textContent = String(target)
+    return
+  }
+  const duration = 1300
+  const startTime = performance.now()
+  const tick = now => {
+    const progress = Math.min((now - startTime) / duration, 1)
+    // easeOutCubic：先快后慢，数字落定时更自然
+    const eased = 1 - Math.pow(1 - progress, 3)
+    span.textContent = String(Math.round(target * eased))
+    if (progress < 1) requestAnimationFrame(tick)
+  }
+  requestAnimationFrame(tick)
+}
+
+const countObserver = new IntersectionObserver(
+  (entries, observer) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      entry.target.querySelectorAll('[data-count]').forEach(animateCount)
+      observer.unobserve(entry.target)
+    }
+  },
+  { threshold: 0.4 },
+)
+document.querySelectorAll('.stat-card').forEach(card => countObserver.observe(card))
